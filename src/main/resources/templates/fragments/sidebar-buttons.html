@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="link" type="java.lang.String"*/-->
+<!--/*@thymesVar id="title" type="java.lang.String"*/-->
+<!--/*@thymesVar id="menuItem" type="java.lang.String"*/-->
+<!--/*@thymesVar id="activeMenuItem" type="java.lang.String"*/-->
+
+<!-- tag::mobile-button[] -->
+<a th:fragment="mobile-button(link, title, menuItem, icon)"
+   th:href="${link}"
+   class="group flex items-center px-2 py-2 text-base font-medium rounded-md"
+   th:classappend="${activeMenuItem == menuItem}? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'"
+>
+    <div class="mr-4 h-6 w-6"
+         th:classappend="${activeMenuItem == menuItem}?'text-gray-500':'text-gray-400 group-hover:text-gray-500'">
+<!--         <svg th:replace="${icon}"></svg> -->
+    </div>
+    [[${title}]]
+</a>
+<!-- end::mobile-button[] -->
+
+<!-- tag::desktop-button[] -->
+<a th:fragment="desktop-button(link, title, menuItem, icon)"
+   th:href="${link}"
+   class="group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+   th:classappend="${activeMenuItem == menuItem}? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'"
+>
+    <div class="mr-3 h-6 w-6"
+         th:classappend="${activeMenuItem == menuItem}?'text-gray-500':'text-gray-400 group-hover:text-gray-500'">
+<!--         <svg th:replace="${icon}"></svg> -->
+    </div>
+    [[${title}]]
+</a>
+<!-- end::desktop-button[] -->
+</html>

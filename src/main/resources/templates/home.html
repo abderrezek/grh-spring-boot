@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymleaf.org">
+<head th:replace="layout/layout :: common_header(~{::title}, ~{})">
+	<title>G.R.H</title>
+</head>
+<body th:replace="layout/layout :: common_body(~{::content}, ~{}, ~{})">
+	<div th:fragment="content">
+		home
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title, links)">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <title th:replace="${title}"></title>
+    
+    <link rel="stylesheet" th:href="@{/css/application.css}">
+    <th:block th:replace="${links}" />
+</head>
+<body th:fragment="common_body(content, modals, scripts)">
+	
+	<!--/* start page */-->
+	<div
+		class="h-screen flex overflow-hidden bg-gray-100"
+		x-data="sidebarMenu()"
+		@keydown.window.escape="closeSidebar"
+	>
+		<!-- sidevar menu for mobile -->
+		<div th:replace="fragments/sidebar-menu :: mobile"></div>
+		
+		<!-- Static sidebar for desktop -->
+		<div th:replace="fragments/sidebar-menu :: desktop"></div>
+		
+		<div class="flex flex-col w-0 flex-1 overflow-hidden">
+			<div th:replace="fragments/top-menu :: menu"></div>
+		
+			<main class="flex-1 relative z-0 overflow-y-auto py-6 focus:outline-none" tabindex="0">
+				<div th:replace="${content}"></div>
+			</main>
+		</div>
+	</div>
+	<!--/* end page */-->
+	
+	<div th:replace="${modals}">modal</div>
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!--     <script th:replace="fragments/sidebar-menu :: scripts"></script> -->
+<!--     <script th:replace="fragments/top-menu :: scripts"></script> -->
+	<script th:src="@{/js/main.js}"></script>
+	<th:block th:replace="${scripts}" />
+</body>
+</html>
